@@ -3,16 +3,13 @@ import { MemoryRouter as Router, Routes, Route } from 'react-router-dom'
 
 import Welcome from './Welcome'
 
-import { BsFillJournalBookmarkFill } from 'react-icons/bs'
-import { SiGnubash } from 'react-icons/si'
-import { VscSourceControl } from 'react-icons/vsc'
 import { IoMdSettings } from 'react-icons/io'
 import { EditorState, Text } from "@codemirror/state";
 import { EditorView, keymap, lineNumbers } from "@codemirror/view";
 import { defaultKeymap, history, historyKeymap, indentWithTab } from "@codemirror/commands";
 import { autocompletion, closeBrackets } from "@codemirror/autocomplete";
 import { search, searchKeymap } from "@codemirror/search";
-import { bracketMatching, foldGutter, foldInside, foldKeymap } from "@codemirror/language";
+import { bracketMatching, foldGutter, foldKeymap } from "@codemirror/language";
 import { javascript } from "@codemirror/lang-javascript";
 import { polycodeTheme } from "./theme/defaultThemePolycode";
 import { vim } from "@replit/codemirror-vim";
@@ -29,32 +26,25 @@ const App: FC = () => {
 }
 
 const Main: FC = () => {
+  console.log(process.cwd())
   return (
     <div className="w-screen h-screen bg-[#282C34] flex flex-row">
-      <Sidebar />
       <Editor />
+      <Setting />
     </div>
   )
 }
 
-const Sidebar: FC = () => {
+const Setting: FC = () => {
   return (
-    <div className="bg-gray-900 flex items-center justify-between p-3 flex-col">
-      <div>
-        <BsFillJournalBookmarkFill fill="white" size={35} />
-        <VscSourceControl fill="white" size={35} className='my-5' />
-        <SiGnubash fill="white" size={35} />
-      </div>
-      <IoMdSettings fill="white" size={35} />
-    </div>
+    <IoMdSettings className='fill-white hover:fill-[#17152B] absolute bottom-0 left-0 m-3 bg-transparent rounded-3xl hover:bg-white hover:rounded-xl transition-all duration-75 ease-linear p-2 w-14 h-14 cursor-pointer' />
   )
 }
 
 const Editor: FC = () => {
   const editor = useRef()
-  const startDoc = 'const hi = "Hello World"\nconsole.log(hi)\nconsole.log("Start Editing the code")'
+  const startDoc = '// Written using Polycode'
   const [code, setCode] = useState<Text>()
-  console.log('Nice code: ' + code)
   useEffect(() => {
     const start = EditorState.create({
       doc: startDoc,
@@ -70,7 +60,6 @@ const Editor: FC = () => {
         polycodeTheme,
         foldGutter(),
         vim(),
-        // hmmm
         EditorView.updateListener.of(function(e) { setCode(e.state.doc) })
       ]
     })
@@ -80,7 +69,7 @@ const Editor: FC = () => {
     }
   }, [])
   return (
-    <div ref={editor} className='w-screen text-lg'></div>
+    <div ref={editor} className='w-screen text-xl'></div>
   )
 }
 

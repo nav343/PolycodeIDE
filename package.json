@@ -2,7 +2,7 @@
   "name": "polycode",
   "productName": "polycode",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "An open-source cross-platform IDE made using Electron, React, Tailwindcss and Codemirror6. Has basic syntax highlighting for most of the languages and autocompletion for JS, TS, JSX, TSX",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
@@ -91,6 +91,7 @@
   "dependencies": {
     "@codemirror/autocomplete": "^6.0.3",
     "@codemirror/commands": "^6.0.1",
+    "@codemirror/gutter": "^0.19.9",
     "@codemirror/lang-javascript": "^6.0.1",
     "@codemirror/lang-python": "^6.0.0",
     "@codemirror/language": "^6.2.0",
