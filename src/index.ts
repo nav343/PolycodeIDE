@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from 'electron';
-import Icon from './assets/icon.svg'
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 if (require('electron-squirrel-startup')) {
@@ -11,7 +10,6 @@ const createWindow = (): void => {
     height: 600,
     width: 800,
     autoHideMenuBar: true,
-    icon: Icon,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false
